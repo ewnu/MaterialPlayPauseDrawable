@@ -120,6 +120,7 @@ abstract class BaseDrawable extends Drawable implements TintableDrawable {
      * {@inheritDoc}
      */
     @Override
+    @Deprecated
     public int getOpacity() {
         // Be safe.
         return PixelFormat.TRANSLUCENT;

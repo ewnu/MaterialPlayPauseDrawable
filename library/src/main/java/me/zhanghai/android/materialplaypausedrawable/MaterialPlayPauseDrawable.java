@@ -17,26 +17,30 @@ import android.graphics.Path;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 public class MaterialPlayPauseDrawable extends BasePaintDrawable {
+    private static final int[] playStart = new int[]{
+            8, 5, 8, 12, 19, 12, 19, 12,
+            8, 12, 8, 19, 19, 12, 19, 12
+    };
+    private static final int[] playEnd = new int[]{
+            12, 5, 5, 16, 12, 16, 12, 5,
+            12, 5, 12, 16, 19, 16, 12, 5
+    };
+    private static final int[] pauseStart = new int[]{
+            6, 5, 6, 19, 10, 19, 10, 5,
+            14, 5, 14, 19, 18, 19, 18, 5
+    };
+    private static final int[] pauseEnd = new int[]{
+            5, 6, 5, 10, 19, 10, 19, 6,
+            5, 14, 5, 18, 19, 18, 19, 14
+    };
 
     public enum State {
 
-        Play(new int[] {
-                8, 5, 8, 12, 19, 12, 19, 12,
-                8, 12, 8, 19, 19, 12, 19, 12
-        }, new int[] {
-                12, 5, 5, 16, 12, 16, 12, 5,
-                12, 5, 12, 16, 19, 16, 12, 5
-        }),
-        Pause(new int[] {
-                6, 5, 6, 19, 10, 19, 10, 5,
-                14, 5, 14, 19, 18, 19, 18, 5
-        }, new int[] {
-                5, 6, 5, 10, 19, 10, 19, 6,
-                5, 14, 5, 18, 19, 18, 19, 14
-        });
+        Play(playStart, playEnd),
+        Pause(pauseStart, pauseEnd);
 
-        private int[] mStartPoints;
-        private int[] mEndPoints;
+        private final int[] mStartPoints;
+        private final int[] mEndPoints;
 
         State(int[] startPoints, int[] endPoints) {
             mStartPoints = startPoints;
@@ -61,6 +65,7 @@ public class MaterialPlayPauseDrawable extends BasePaintDrawable {
                 public void setValue(MaterialPlayPauseDrawable object, float value) {
                     object.mFraction = value;
                 }
+
                 @Override
                 public Float get(MaterialPlayPauseDrawable object) {
                     return object.mFraction;
@@ -111,7 +116,6 @@ public class MaterialPlayPauseDrawable extends BasePaintDrawable {
 
     public void jumpToState(State state) {
         stop();
-        mPreviousState = null;
         mCurrentState = state;
         mFraction = 1;
         mNextState = null;
