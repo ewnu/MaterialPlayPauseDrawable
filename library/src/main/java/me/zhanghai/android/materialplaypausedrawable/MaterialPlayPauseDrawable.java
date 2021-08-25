@@ -13,7 +13,8 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
+
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 public class MaterialPlayPauseDrawable extends BasePaintDrawable {
 

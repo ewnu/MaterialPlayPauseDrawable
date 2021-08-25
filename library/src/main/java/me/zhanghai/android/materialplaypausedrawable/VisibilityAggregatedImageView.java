@@ -7,8 +7,9 @@ package me.zhanghai.android.materialplaypausedrawable;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
+
+import androidx.appcompat.widget.AppCompatImageView;
 
 public class VisibilityAggregatedImageView extends AppCompatImageView {
 
